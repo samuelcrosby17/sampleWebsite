@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Author: Samuel Crosby (IT Support Specialist) -->
+    <!-- Date: November 2026 -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fairfield Campus Cart Co. | Mobile Refreshment Unit</title>
+    <style>
+        :root {
+            --primary-color: #1e3a8a;
+            --secondary-color: #d97706;
+            --bg-color: #0f172a;
+            --card-bg: #1e293b;
+            --text-light: #f8fafc;
+            --text-muted: #94a3b8;
+            --accent-green: #10b981;
+            --border-color: #334155;
+            --font-mono: 'Consolas', 'Courier New', monospace;
+            --font-sans: 'Segoe UI', system-ui, sans-serif;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-light);
+            font-family: var(--font-sans);
+            line-height: 1.6;
+        }
+
+        header {
+            background-color: var(--card-bg);
+            border-bottom: 2px solid var(--primary-color);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        nav {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+        }
+
+        .logo {
+            font-family: var(--font-mono);
+            font-size: 1.4rem;
+            font-weight: bold;
+            color: var(--secondary-color);
+            text-decoration: none;
+        }
+
+        .logo span {
+            color: var(--accent-green);
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .nav-links a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--secondary-color);
+        }
+
+        main {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            padding: 3rem 1rem;
+            background: linear-gradient(180deg, var(--card-bg) 0%, var(--bg-color) 100%);
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+            margin-bottom: 2.5rem;
+        }
+
+        h1 {
+            font-size: 2.8rem;
+            color: var(--text-light);
+            margin-bottom: 0.5rem;
+            font-family: var(--font-mono);
+        }
+
+        .tagline {
+            font-size: 1.25rem;
+            color: var(--secondary-color);
+            margin-bottom: 2rem;
+            font-weight: 600;
+        }
+
+        .hero-img-container {
+            width: 100%;
+            max-width: 600px;
+            margin: 0 auto 2rem auto;
+            border-radius: 8px;
+            overflow: hidden;
+            border: 2px solid var(--secondary-color);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+        }
+
+        .hero-img-container img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* Elevator Pitch */
+        .pitch {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-left: 4px solid var(--secondary-color);
+            border-radius: 8px;
+            padding: 1.8rem;
+            margin-bottom: 2.5rem;
+            text-align: center;
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            color: var(--text-light);
+            margin-bottom: 1rem;
+            font-family: var(--font-mono);
+        }
+
+        p {
+            color: var(--text-muted);
+            font-size: 1.05rem;
+        }
+
+        .pitch p {
+            max-width: 850px;
+            margin: 0 auto;
+            color: var(--text-light);
+        }
+
+        /* Offerings Grid */
+        .offerings {
+            margin-bottom: 2.5rem;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 1.5rem;
+            transition: transform 0.2s, border-color 0.2s;
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+            border-color: var(--secondary-color);
+        }
+
+        .card h3 {
+            color: var(--accent-green);
+            font-family: var(--font-mono);
+            margin-bottom: 0.5rem;
+        }
+
+        /* Call to Action */
+        .cta-section {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin: 3rem 0;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.8rem 1.8rem;
+            border-radius: 6px;
+            font-weight: bold;
+            text-decoration: none;
+            transition: background 0.2s;
+        }
+
+        .btn-primary {
+            background-color: var(--secondary-color);
+            color: #ffffff;
+        }
+
+        .btn-primary:hover {
+            background-color: #b45309;
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            color: var(--accent-green);
+            border: 2px solid var(--accent-green);
+        }
+
+        .btn-secondary:hover {
+            background-color: rgba(16, 185, 129, 0.1);
+        }
+
+        /* Trust & Fun Element */
+        .trust-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .trust-box {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 1.5rem;
+        }
+
+        .badge {
+            display: inline-block;
+            background-color: var(--primary-color);
+            color: var(--text-light);
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+            margin-bottom: 0.5rem;
+        }
+
+        footer {
+            background-color: var(--card-bg);
+            border-top: 1px solid var(--border-color);
+            text-align: center;
+            padding: 1.5rem;
+            margin-top: 3rem;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <nav>
+            <a href="index.html" class="logo">Fairfield<span>Cart</span>.co</a>
+            <ul class="nav-links">
+                <li><a href="index.html" class="active">Home</a></li>
+                <li><a href="page2.html">Products & Menu</a></li>
+                <li><a href="page3.html">About & Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero">
+            <h1>Fairfield Campus Cart Co.</h1>
+            <p class="tagline">High-Mobility Snacks & Low-Latency Refreshments for Campus Life</p>
+            <div class="hero-img-container">
+                <img src="https://images.unsplash.com/photo-1565123409695-7b5ef63a2efb?auto=format&fit=crop&w=800&q=80" alt="Fairfield Campus Cart Mobile Food Truck">
+            </div>
+        </section>
+
+        <!-- Elevator Pitch -->
+        <section class="pitch">
+            <h2>System Architecture Overview</h2>
+            <p>Fairfield Campus Cart Co. is a specialized mobile food and beverage micro-business operating mobile refreshment units at high-density student hubs, downtown sidewalks, and community gatherings. We provide instant access to ice-cold bottled drinks, freshly squeezed lemonade, salty snacks, gourmet cookies, and small-scale event catering tailored for student organizations.</p>
+        </section>
+
+        <!-- Featured Offerings -->
+        <section class="offerings">
+            <h2>Featured Highlights</h2>
+            <div class="grid">
+                <div class="card">
+                    <h3>01. Express Hydration</h3>
+                    <p>Ice-cold bottled water, sparkling sodas, and hand-crafted house lemonade brewed daily for maximum campus performance.</p>
+                </div>
+                <div class="card">
+                    <h3>02. Quick-Grab Fuel</h3>
+                    <p>Individual chip bags, fresh gourmet cookies, and energy bars optimized for fast-paced schedule transitions.</p>
+                </div>
+                <div class="card">
+                    <h3>03. Mobile Catering</h3>
+                    <p>Dedicated snack and beverage setups for club meetings, campus pop-up events, and departmental symposiums.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Call to Action (CTA) -->
+        <div class="cta-section">
+            <a href="page2.html" class="btn btn-primary">Explore Our Products</a>
+            <a href="page3.html" class="btn btn-secondary">Get in Touch</a>
+        </div>
+
+        <!-- Trust / Fun Element -->
+        <section class="trust-grid">
+            <div class="trust-box">
+                <span class="badge">SYSTEM BENCHMARK / REVIEW</span>
+                <p><em>"The Fairfield Cart is a lifesaver between classes! Their mobile POS processes payments in under a second."</em></p>
+                <p style="margin-top: 0.5rem; font-weight: bold; color: var(--secondary-color);">— Student Union Feedback</p>
+            </div>
+            <div class="trust-box">
+                <span class="badge">SYSTEM METRIC / FUN FACT</span>
+                <p>Our dedicated IT infrastructure runs on cellular Wi-Fi hotspots, ensuring 99.99% uptime for contactless payment processing across all campus deployment zones!</p>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Fairfield Campus Cart Co. All rights reserved. Managed by Retail Operations & IT Support.</p>
+    </footer>
+
+</body>
+</html>

@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Author: Samuel Crosby (IT Support Specialist) -->
+    <!-- Date: November 2026 -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us & Contact | Fairfield Campus Cart Co.</title>
+    <style>
+        :root {
+            --primary-color: #1e3a8a;
+            --secondary-color: #d97706;
+            --bg-color: #0f172a;
+            --card-bg: #1e293b;
+            --text-light: #f8fafc;
+            --text-muted: #94a3b8;
+            --accent-green: #10b981;
+            --border-color: #334155;
+            --font-mono: 'Consolas', 'Courier New', monospace;
+            --font-sans: 'Segoe UI', system-ui, sans-serif;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-light);
+            font-family: var(--font-sans);
+            line-height: 1.6;
+        }
+
+        header {
+            background-color: var(--card-bg);
+            border-bottom: 2px solid var(--primary-color);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        nav {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+        }
+
+        .logo {
+            font-family: var(--font-mono);
+            font-size: 1.4rem;
+            font-weight: bold;
+            color: var(--secondary-color);
+            text-decoration: none;
+        }
+
+        .logo span {
+            color: var(--accent-green);
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .nav-links a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--secondary-color);
+        }
+
+        main {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 2.5rem 2rem;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            color: var(--text-light);
+            font-family: var(--font-mono);
+            margin-bottom: 0.5rem;
+        }
+
+        p {
+            color: var(--text-muted);
+            font-size: 1.05rem;
+        }
+
+        /* Origin Story */
+        .origin-story {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-left: 4px solid var(--accent-green);
+            border-radius: 8px;
+            padding: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        h2 {
+            font-size: 1.6rem;
+            color: var(--text-light);
+            font-family: var(--font-mono);
+            margin-bottom: 1rem;
+        }
+
+        /* Founders Grid */
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .team-card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 1.5rem;
+            text-align: center;
+        }
+
+        .team-card h3 {
+            color: var(--text-light);
+            margin-bottom: 0.2rem;
+        }
+
+        .role {
+            color: var(--secondary-color);
+            font-family: var(--font-mono);
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        /* Contact & Form Grid */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .contact-box, .form-box {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 2rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.2rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.4rem;
+            font-family: var(--font-mono);
+            font-size: 0.85rem;
+        }
+
+        .form-group input, .form-group textarea {
+            width: 100%;
+            padding: 0.75rem;
+            background-color: var(--bg-color);
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            color: var(--text-light);
+        }
+
+        .btn-submit {
+            width: 100%;
+            padding: 0.8rem;
+            background-color: var(--accent-green);
+            color: #ffffff;
+            border: none;
+            border-radius: 6px;
+            font-weight: bold;
+            font-family: var(--font-mono);
+            cursor: pointer;
+        }
+
+        /* Hours & FAQ */
+        .faq-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .hours-list {
+            list-style: none;
+        }
+
+        .hours-list li {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        footer {
+            background-color: var(--card-bg);
+            border-top: 1px solid var(--border-color);
+            text-align: center;
+            padding: 1.5rem;
+            margin-top: 3rem;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <nav>
+            <a href="index.html" class="logo">Fairfield<span>Cart</span>.co</a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="page2.html">Products & Menu</a></li>
+                <li><a href="page3.html" class="active">About & Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="section-header">
+            <h1>About Us & System Operators</h1>
+            <p>Learn about our origins, key leadership, and operational channels.</p>
+        </section>
+
+        <!-- Origin Story -->
+        <section class="origin-story">
+            <h2>// The Origin Story</h2>
+            <p>Fairfield Campus Cart Co. was created to bridge the gap between busy campus schedules and quick, affordable access to refreshments. Recognizing that students and workers needed reliable options near high-density areas, our team combined retail operations expertise with mobile IT infrastructure to launch a high-performance food cart micro-business.</p>
+        </section>
+
+        <!-- Founders & Team -->
+        <section>
+            <h2>[ Leadership & Operations Team ]</h2>
+            <div class="team-grid" style="margin-top: 1rem;">
+                <div class="team-card">
+                    <h3>Isaiah Burns</h3>
+                    <div class="role">Retail Operations Manager</div>
+                    <p>Oversees cart deployment, staff scheduling, inventory logistics, and event catering partnerships[cite: 1].</p>
+                </div>
+                <div class="team-card">
+                    <h3>Samuel Crosby</h3>
+                    <div class="role">IT Support Specialist</div>
+                    <p>Maintains mobile POS terminals, cellular hotspots, payment data security, and system connectivity[cite: 2].</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Details & Form -->
+        <section class="contact-grid">
+            <div class="contact-box">
+                <h2>Contact Endpoints</h2>
+                <p style="margin-bottom: 1rem;"><strong>Cart Base Location:</strong> Student Center Plaza, Room 102</p>
+                <p style="margin-bottom: 1rem;"><strong>Email:</strong> <a href="mailto:support@fairfieldcart.co" style="color: var(--secondary-color);">support@fairfieldcart.co</a></p>
+                <p style="margin-bottom: 1rem;"><strong>Phone / Hotspot:</strong> (555) 019-2026</p>
+                <p><strong>Social Handles:</strong> @FairfieldCartCo on Instagram & X</p>
+            </div>
+
+            <div class="form-box">
+                <h2>Get in Touch / Catering Request</h2>
+                <form action="#" method="post">
+                    <div class="form-group">
+                        <label for="name">Name:</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email:</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="msg">Message / Catering Details:</label>
+                        <textarea id="msg" name="msg" rows="3" required></textarea>
+                    </div>
+                    <button type="submit" class="btn-submit">SUBMIT INQUIRY</button>
+                </form>
+            </div>
+        </section>
+
+        <!-- Hours & FAQ -->
+        <section class="faq-grid">
+            <div class="contact-box">
+                <h2>Hours of Operation</h2>
+                <ul class="hours-list">
+                    <li><span>Mon - Thu:</span> <span>08:00 - 20:00</span></li>
+                    <li><span>Friday:</span> <span>08:00 - 22:00</span></li>
+                    <li><span>Saturday (Downtown):</span> <span>10:00 - 18:00</span></li>
+                    <li><span>Sunday (Events):</span> <span>12:00 - 17:00</span></li>
+                </ul>
+            </div>
+
+            <div class="contact-box">
+                <h2>Frequently Asked Questions</h2>
+                <p style="margin-bottom: 0.8rem;"><strong>Q: Do you cater student club events?</strong><br>A: Yes! Submit a catering inquiry above for custom drink & snack bundles[cite: 1].</p>
+                <p><strong>Q: What payment methods are accepted?</strong><br>A: Our mobile POS accepts all credit/debit cards, contactless mobile pay, and campus cards[cite: 2, 3].</p>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Fairfield Campus Cart Co. All rights reserved. Managed by Retail Operations & IT Support.</p>
+    </footer>
+
+</body>
+</html>

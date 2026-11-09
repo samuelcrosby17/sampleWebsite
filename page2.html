@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Author: Isaiah Burns (Retail Operations Manager) -->
+    <!-- Date: November 2026 -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu & Products | Fairfield Campus Cart Co.</title>
+    <style>
+        :root {
+            --primary-color: #0284c7;
+            --secondary-color: #f59e0b;
+            --bg-color: #f8fafc;
+            --card-bg: #ffffff;
+            --text-dark: #1e293b;
+            --text-muted: #64748b;
+            --border-color: #e2e8f0;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            --font-sans: 'Segoe UI', system-ui, sans-serif;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-dark);
+            font-family: var(--font-sans);
+            line-height: 1.6;
+        }
+
+        header {
+            background-color: var(--card-bg);
+            border-bottom: 2px solid var(--primary-color);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: var(--shadow);
+        }
+
+        nav {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+        }
+
+        .logo {
+            font-size: 1.4rem;
+            font-weight: 800;
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+
+        .logo span {
+            color: var(--secondary-color);
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .nav-links a {
+            color: var(--text-dark);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--primary-color);
+        }
+
+        main {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 2.5rem 2rem;
+        }
+
+        .page-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+
+        p {
+            color: var(--text-muted);
+            font-size: 1.05rem;
+        }
+
+        /* Promo Banner */
+        .promo-banner {
+            background: linear-gradient(135deg, var(--primary-color) 0%, #0369a1 100%);
+            color: #ffffff;
+            padding: 2rem;
+            border-radius: 12px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+            box-shadow: var(--shadow);
+        }
+
+        .promo-banner h2 {
+            font-size: 1.6rem;
+            color: #ffffff;
+            margin-bottom: 0.3rem;
+        }
+
+        .promo-banner p {
+            color: #e0f2fe;
+        }
+
+        .promo-code {
+            background-color: rgba(255, 255, 255, 0.2);
+            border: 2px dashed #ffffff;
+            padding: 0.6rem 1.2rem;
+            border-radius: 8px;
+            text-align: center;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+
+        /* Menu Grid */
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .menu-card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.2s;
+        }
+
+        .menu-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .menu-card img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+        }
+
+        .card-body {
+            padding: 1.25rem;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.5rem;
+        }
+
+        .card-header h3 {
+            font-size: 1.2rem;
+            color: var(--text-dark);
+        }
+
+        .price {
+            font-size: 1.1rem;
+            font-weight: 800;
+            color: var(--primary-color);
+            background-color: #e0f2fe;
+            padding: 0.2rem 0.6rem;
+            border-radius: 6px;
+        }
+
+        .card-desc {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            margin-bottom: 1rem;
+            flex-grow: 1;
+        }
+
+        /* How It Works */
+        .process-section {
+            text-align: center;
+            margin-top: 4rem;
+        }
+
+        .process-section h2 {
+            font-size: 2rem;
+            color: var(--primary-color);
+            margin-bottom: 2rem;
+        }
+
+        .steps-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .step-card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            padding: 2rem 1.5rem;
+            border-radius: 12px;
+            box-shadow: var(--shadow);
+        }
+
+        .step-num {
+            width: 40px;
+            height: 40px;
+            background-color: var(--secondary-color);
+            color: #ffffff;
+            font-weight: bold;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem auto;
+            font-size: 1.2rem;
+        }
+
+        footer {
+            background-color: var(--card-bg);
+            border-top: 1px solid var(--border-color);
+            text-align: center;
+            padding: 1.5rem;
+            margin-top: 4rem;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <nav>
+            <a href="index.html" class="logo">Fairfield<span>Cart</span>.co</a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="page2.html" class="active">Products & Menu</a></li>
+                <li><a href="page3.html">About & Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="page-header">
+            <h1>Our Fresh Menu & Cart Offerings</h1>
+            <p>Tasty snacks, cold drinks, and event catering available directly on campus!</p>
+        </section>
+
+        <!-- Special Promo -->
+        <section class="promo-banner">
+            <div>
+                <h2>★ Seasonal Bestseller: Study Combo Deal</h2>
+                <p>Pair any cold beverage with a chip bag and cookie for just $5.00 total!</p>
+            </div>
+            <div class="promo-code">
+                CODE: CAMPUSRUSH26
+            </div>
+        </section>
+
+        <!-- Catalog / Menu -->
+        <section class="menu-grid">
+            <div class="menu-card">
+                <img src="https://images.unsplash.com/photo-1621263764928-df1444c5e859?auto=format&fit=crop&w=500&q=80" alt="Fresh Lemonade">
+                <div class="card-body">
+                    <div class="card-header">
+                        <h3>Fresh Lemonade</h3>
+                        <span class="price">$3.50</span>
+                    </div>
+                    <p class="card-desc">Hand-squeezed daily with real lemons and pure cane sugar. Served ice-cold!</p>
+                </div>
+            </div>
+
+            <div class="menu-card">
+                <img src="https://images.unsplash.com/photo-1548839140-29a749e1cf4e?auto=format&fit=crop&w=500&q=80" alt="Bottled Refreshments">
+                <div class="card-body">
+                    <div class="card-header">
+                        <h3>Bottled Drinks</h3>
+                        <span class="price">$2.00</span>
+                    </div>
+                    <p class="card-desc">Assorted cold bottled spring water, sparkling sodas, and iced teas.</p>
+                </div>
+            </div>
+
+            <div class="menu-card">
+                <img src="https://images.unsplash.com/photo-1566478989037-eec170784d0b?auto=format&fit=crop&w=500&q=80" alt="Gourmet Cookies">
+                <div class="card-body">
+                    <div class="card-header">
+                        <h3>Gourmet Cookies</h3>
+                        <span class="price">$2.50</span>
+                    </div>
+                    <p class="card-desc">Freshly baked chocolate chip, oatmeal raisin, and double chocolate cookies.</p>
+                </div>
+            </div>
+
+            <div class="menu-card">
+                <img src="https://images.unsplash.com/photo-1527661591475-527312dd65f5?auto=format&fit=crop&w=500&q=80" alt="Salty Snack Bags">
+                <div class="card-body">
+                    <div class="card-header">
+                        <h3>Salty Snack Bags</h3>
+                        <span class="price">$1.50</span>
+                    </div>
+                    <p class="card-desc">Classic potato chips, pretzels, tortilla chips, and roasted peanuts.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Process: How It Works -->
+        <section class="process-section">
+            <h2>How It Works</h2>
+            <div class="steps-grid">
+                <div class="step-card">
+                    <div class="step-num">1</div>
+                    <h3>Locate the Cart</h3>
+                    <p>Find us stationed near the Student Center, Library Plaza, or downtown sidewalk spots.</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-num">2</div>
+                    <h3>Order & Pay</h3>
+                    <p>Tap your card or phone at our ultra-fast mobile POS checkout terminal.</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-num">3</div>
+                    <h3>Enjoy Fresh Fuel</h3>
+                    <p>Grab your fresh drink and snacks and head off to your next lecture or event!</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Fairfield Campus Cart Co. All rights reserved. Managed by Retail Operations & IT Support.</p>
+    </footer>
+
+</body>
+</html>
